@@ -31,42 +31,42 @@ src/arbol.exe
 ## Capturas
 
 ### 1. Menú principal
-![Menu principal](capturas/1-menu.png)
+![Menu principal](capturas/1-menu.png)<br><br>
 
 Se muestra el menú con todas las opciones disponibles del sistema BST.
 
 ### 2. Inserción de empleados
-![Insercion](capturas/2-insercion.png)
+![Insercion](capturas/2-insercion.png)<br><br>
 
 Se insertaron 7 empleados con sus códigos, nombres y cargos. El primer empleado insertado se convierte en la raíz del árbol.
 
 ### 3. Búsqueda de empleado
-![Busqueda](capturas/3-busqueda.png)
+![Busqueda](capturas/3-busqueda.png)<br><br>
 
 El árbol recorre los nodos comparando códigos hasta encontrar al empleado solicitado.
 
 ### 4. Recorrido Inorden
-![Recorrido Inorden](capturas/4-inorden.png)
+![Recorrido Inorden](capturas/4-inorden.png)<br><br>
 
 Visita los nodos en orden: izquierda → raíz → derecha. Muestra los empleados ordenados de menor a mayor código.
 
 ### 5. Recorrido Preorden
-![Recorrido Preorden](capturas/5-preorden.png)
+![Recorrido Preorden](capturas/5-preorden.png)<br><br>
 
 Visita los nodos en orden: raíz → izquierda → derecha. Empieza desde la raíz y desciende.
 
 ### 6. Recorrido Postorden
-![Recorrido Postorden](capturas/6-postorden.png)
+![Recorrido Postorden](capturas/6-postorden.png)<br><br>
 
 Visita los nodos en orden: izquierda → derecha → raíz. Los nodos hoja aparecen primero.
 
 ### 7. Altura
-![Altura](capturas/7-altura.png)
+![Altura](capturas/7-altura.png)<br><br>
 
 La altura del árbol es 3, lo que indica que hay 3 niveles desde la raíz hasta la hoja más lejana.
 
 ### 8. Nodos hoja
-![Hoja](capturas/8-hoja.png)
+![Hoja](capturas/8-hoja.png)<br><br>
 
 Los nodos hoja son los que no tienen hijos: códigos 20, 40, 60 y 80.
 
