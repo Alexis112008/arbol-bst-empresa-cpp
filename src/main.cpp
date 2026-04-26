@@ -175,20 +175,39 @@ int main() {
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-        if (opcion == 1) {
-            Empleado emp;
-            cout << "Codigo: ";
-            cin >> emp.codigo;
-            cin.ignore();
+    if (opcion == 1) {
+        Empleado emp;
+        cout << "Codigo: ";
+        cin >> emp.codigo;
+        cin.ignore();
 
-            cout << "Nombre: ";
-            getline(cin, emp.nombre);
+    // Validar codigo positivo
+    if (emp.codigo <= 0) {
+        cout << "Error: El codigo debe ser un numero positivo.\n";
+        break;
+    }
 
-            cout << "Cargo: ";
-            getline(cin, emp.cargo);
+    cout << "Nombre: ";
+        getline(cin, emp.nombre);
 
-            arbol.insertarEmpleado(emp);
-        } 
+    // Validar nombre no vacio
+    if (emp.nombre.empty()) {
+        cout << "Error: El nombre no puede estar vacio.\n";
+        break;
+    }
+
+    cout << "Cargo: ";
+    getline(cin, emp.cargo);
+
+    // Validar cargo no vacio
+    if (emp.cargo.empty()) {
+        cout << "Error: El cargo no puede estar vacio.\n";
+        break;
+    }
+
+    arbol.insertarEmpleado(emp);
+    cout << "Empleado insertado correctamente.\n";
+}
         else if (opcion == 2) {
             int codigo;
             cout << "Ingrese codigo a buscar: ";
