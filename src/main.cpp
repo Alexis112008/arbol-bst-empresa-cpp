@@ -175,6 +175,14 @@ int main() {
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
+    // Validar que el usuario ingrese un numero
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Opcion invalida. Ingrese un numero del 0 al 8.\n";
+    continue;
+    }
+
     if (opcion == 1) {
         Empleado emp;
         cout << "Codigo: ";
