@@ -28,7 +28,6 @@ private:
         if (nodo == nullptr) {
             return new Nodo(emp);
         }
-
         if (emp.codigo < nodo->dato.codigo) {
             nodo->izquierdo = insertar(nodo->izquierdo, emp);
         } else if (emp.codigo > nodo->dato.codigo) {
@@ -36,7 +35,6 @@ private:
         } else {
             cout << "El codigo ya existe.\n";
         }
-
         return nodo;
     }
 
@@ -44,7 +42,6 @@ private:
         if (nodo == nullptr || nodo->dato.codigo == codigo) {
             return nodo;
         }
-
         if (codigo < nodo->dato.codigo) {
             return buscar(nodo->izquierdo, codigo);
         } else {
@@ -77,13 +74,9 @@ private:
     }
 
     int altura(Nodo* nodo) {
-        if (nodo == nullptr) {
-            return 0;
-        }
-
+        if (nodo == nullptr) return 0;
         int alturaIzq = altura(nodo->izquierdo);
         int alturaDer = altura(nodo->derecho);
-
         return 1 + max(alturaIzq, alturaDer);
     }
 
@@ -114,7 +107,6 @@ public:
 
     void buscarEmpleado(int codigo) {
         Nodo* resultado = buscar(raiz, codigo);
-
         if (resultado != nullptr) {
             cout << "\nEmpleado encontrado:\n";
             mostrarEmpleado(resultado);
@@ -155,6 +147,10 @@ public:
         cout << "\nNodos hoja:\n";
         mostrarHojas(raiz);
     }
+
+    bool estaVacio() {
+        return raiz == nullptr;
+    }
 };
 
 int main() {
@@ -175,70 +171,118 @@ int main() {
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-    // Validar que el usuario ingrese un numero
-    if (cin.fail()) {
-        cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "Opcion invalida. Ingrese un numero del 0 al 8.\n";
-    continue;
-    }
+        // Validar que el usuario ingrese un numero
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Opcion invalida. Ingrese un numero del 0 al 8.\n";
+            continue;
+        }
 
-    if (opcion == 1) {
-        Empleado emp;
-        cout << "Codigo: ";
-        cin >> emp.codigo;
-        cin.ignore();
+        if (opcion == 1) {
+            Empleado emp;
+            cout << "Codigo: ";
+            cin >> emp.codigo;
 
-    // Validar codigo positivo
-    if (emp.codigo <= 0) {
-        cout << "Error: El codigo debe ser un numero positivo.\n";
-        break;
-    }
+            // Validar que el codigo sea numero
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Error: El codigo debe ser un numero.\n";
+                continue;
+            }
 
-    cout << "Nombre: ";
-        getline(cin, emp.nombre);
+            cin.ignore();
 
-    // Validar nombre no vacio
-    if (emp.nombre.empty()) {
-        cout << "Error: El nombre no puede estar vacio.\n";
-        break;
-    }
+            // Validar codigo positivo
+            if (emp.codigo <= 0) {
+                cout << "Error: El codigo debe ser un numero positivo.\n";
+                continue;  // <-- continue, NO break
+            }
 
-    cout << "Cargo: ";
-    getline(cin, emp.cargo);
+            cout << "Nombre: ";
+            getline(cin, emp.nombre);
 
-    // Validar cargo no vacio
-    if (emp.cargo.empty()) {
-        cout << "Error: El cargo no puede estar vacio.\n";
-        break;
-    }
+            // Validar nombre no vacio
+            if (emp.nombre.empty()) {
+                cout << "Error: El nombre no puede estar vacio.\n";
+                continue;  // <-- continue, NO break
+            }
 
-    arbol.insertarEmpleado(emp);
-    cout << "Empleado insertado correctamente.\n";
-}
+            cout << "Cargo: ";
+            getline(cin, emp.cargo);
+
+            // Validar cargo no vacio
+            if (emp.cargo.empty()) {
+                cout << "Error: El cargo no puede estar vacio.\n";
+                continue;  // <-- continue, NO break
+            }
+
+            arbol.insertarEmpleado(emp);
+            cout << "Empleado insertado correctamente.\n";
+        }
         else if (opcion == 2) {
             int codigo;
             cout << "Ingrese codigo a buscar: ";
             cin >> codigo;
-            arbol.buscarEmpleado(codigo);
-        } 
+
+            // Validar que sea numero
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Error: Ingrese un numero valido.\n";
+                continue;
+            }
+
+            // Validar codigo positivo
+            if (codigo <= 0) {
+                cout << "Error: El codigo debe ser un numero positivo.\n";
+                continue;
+            }
+
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.buscarEmpleado(codigo);
+            }
+        }
         else if (opcion == 3) {
             arbol.mostrarRaiz();
-        } 
+        }
         else if (opcion == 4) {
-            arbol.mostrarInorden();
-        } 
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.mostrarInorden();
+            }
+        }
         else if (opcion == 5) {
-            arbol.mostrarPreorden();
-        } 
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.mostrarPreorden();
+            }
+        }
         else if (opcion == 6) {
-            arbol.mostrarPostorden();
-        } 
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.mostrarPostorden();
+            }
+        }
         else if (opcion == 7) {
-            arbol.mostrarAltura();
-        } 
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.mostrarAltura();
+            }
+        }
         else if (opcion == 8) {
-            arbol.mostrarNodosHoja();
+            if (arbol.estaVacio()) {
+                cout << "El arbol esta vacio. Inserte empleados primero.\n";
+            } else {
+                arbol.mostrarNodosHoja();
+            }
         }
 
     } while (opcion != 0);
